@@ -5,7 +5,7 @@ const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 
-let apiQuotes = [];
+//let apiQuotes = [];
 
 // Show Loading 
 function loading() {
@@ -23,7 +23,7 @@ function  complete() {
 function newQuote() {
     loading();
     // pick a random quote from apiQuotes array
-    const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
+    const quote = localQuotes[Math.floor(Math.random() * localQuotes.length)];
     // check if Author field is blank and replace it with 'Unknown'
     if(!quote.author){
         authorText.textContent = 'Unknown';
@@ -42,18 +42,18 @@ function newQuote() {
 }
 
 // Get Quote From API
-async function getQuotes() {
-    loading();
-    const apiUrl = 'https://type.fit/api/quotes';
-    try{
-        const response = await fetch(apiUrl);
-        apiQuotes = await response.json();
-        newQuote();
-    }catch (error) {
+//async function getQuotes() {
+    //loading();
+    //const apiUrl = 'https://type.fit/api/quotes';
+    //try{
+        //const response = await fetch(apiUrl);
+        //apiQuotes = await response.json();
+        //newQuote();
+    //}catch (error) {
         // Catch Error here
-    }
+    //}
    
-}
+//}
 // tweet a Quote 
 function tweetQuote() {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
@@ -65,4 +65,5 @@ newQuoteBtn.addEventListener('click', newQuote);
 twitterBtn.addEventListener('click', tweetQuote);
 
 // On Load
-getQuotes();
+newQuote();
+//getQuotes();
